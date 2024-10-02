@@ -7,9 +7,9 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.use("/customer", proxy("http://localhost:8001"));
-app.use("/shopping", proxy("http://localhost:8003"));
-app.use("/product", proxy("http://localhost:8002")); // products
+app.use("/customer", proxy("https://grocerry-backend.vercel.app"));
+app.use("/shopping", proxy("https://grocerry-backend-shopping.vercel.app"));
+app.use("/product", proxy("https://grocerry-backend-2sir.vercel.app")); // products
 
 app.listen(8000, () => {
   console.log("Gateway is Listening to Port 8000");
