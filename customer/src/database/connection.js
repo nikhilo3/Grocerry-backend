@@ -5,7 +5,7 @@ module.exports = async() => {
 
     try {
         console.log("DB_URL",DB_URL)
-        await mongoose.connect('mongodb://127.0.0.1:27017/collection', {
+        await mongoose.connect('mongodb+srv://nikhilladani03:MdDnIyrZT2NSYF5f@cluster0.vzpap.mongodb.net/inventorymanagement', {
             useNewUrlParser: true,
             useUnifiedTopology: true,
             useCreateIndex: true
