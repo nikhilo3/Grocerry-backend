@@ -3,10 +3,6 @@ const jwt = require("jsonwebtoken");
 const amqplib = require("amqplib");
 const {
   APP_SECRET,
-  QUEUE_NAME,
-  EXCHANGE_NAME,
-  MSG_QUEUE_URL,
-  CUSTOMER_BINDING_KEY,
 } = require("../config"); 
 const { SHOPPING_BINDING_KEY } = require("../../../customer/src/config");
 
