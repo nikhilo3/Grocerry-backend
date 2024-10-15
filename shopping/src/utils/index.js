@@ -4,7 +4,7 @@ const amqplib = require("amqplib");
 const {
   APP_SECRET,
 } = require("../config"); 
-const { SHOPPING_BINDING_KEY } = require("../../../customer/src/config");
+// const { SHOPPING_BINDING_KEY } = require("../../../customer/src/config");
 
 //Utility functions
 module.exports.GenerateSalt = async () => {
