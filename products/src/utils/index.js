@@ -27,7 +27,7 @@ module.exports.ValidatePassword = async (
 
 module.exports.GenerateSignature = async (payload) => {
   try {
-    return await jwt.sign(payload, APP_SECRET, { expiresIn: "30d" });
+    return await jwt.sign(payload, 'mysecret', { expiresIn: "30d" });
   } catch (error) {
     console.log(error);
     return error;
@@ -38,7 +38,7 @@ module.exports.ValidateSignature = async (req) => {
   try {
     const signature = req.get("Authorization");
     console.log(signature);
-    const payload = await jwt.verify(signature.split(" ")[1], APP_SECRET);
+    const payload = await jwt.verify(signature.split(" ")[1], 'mysecret');
     req.user = payload;
     return true;
   } catch (error) {

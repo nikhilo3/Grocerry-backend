@@ -14,26 +14,27 @@ class CustomerService {
   }
 
   async SignIn(userInputs) {
-    const { email,password } = userInputs;
+    const { email, password } = userInputs;
 
     const existingCustomer = await this.repository.FindCustomer({ email });
 
     if (existingCustomer) {
-       const validPassword = await ValidatePassword(password, existingCustomer.password, existingCustomer.salt);
-       if(validPassword){
-      const token = await GenerateSignature({
-         email: existingCustomer.email,
-        _id: existingCustomer._id,
-      });
-      return FormateData({
-        id: existingCustomer._id,
-        isAdmin: existingCustomer?.isAdmin,
-        token,
-      });
-         }
+      const validPassword = await ValidatePassword(password, existingCustomer.password, existingCustomer.salt);
+      if (validPassword) {
+        const token = await GenerateSignature({
+          email: existingCustomer.email,
+          _id: existingCustomer._id,
+        });
+        console.log(token)
+        return FormateData({
+          id: existingCustomer._id,
+          isAdmin: existingCustomer?.isAdmin,
+          token,
+        });
+      }
     }
 
-    return FormateData({"message" : "user not found"});
+    return FormateData({ "message": "user not found" });
   }
 
   async SignUp(userInputs) {

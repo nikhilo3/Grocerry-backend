@@ -1,5 +1,6 @@
 const CustomerService = require("../services/customer-service");
 const UserAuth = require("./middlewares/auth");
+const jwt = require('jsonwebtoken')
 
 module.exports = (app) => {
   const service = new CustomerService();
@@ -62,13 +63,22 @@ module.exports = (app) => {
     res.json(data);
   });
 
+  const verifytoken = () => {
+    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InFxQGdtYWlsLmNvbSIsIl9pZCI6IjY3MDZhNjA0MzMzYzgxMDAwMzRkN2Q2MCIsImlhdCI6MTcyOTAwNjQwNCwiZXhwIjoxNzMxNTk4NDA0fQ.TDNjTgvTbNI3gqHAdW4nYnOSQSrB5IwuqYc9DsPx1oQ'
+    const decode = jwt.verify(token, 'mysecret');
+    console.log(decode);
+  }
+  // verifytoken();
+
+
+
   app.post("/address", UserAuth, async (req, res, next) => {
     console.log('api called')
     const { _id } = req.user;
 
     const { type, completeAddress, latitude, longitude } = req.body;
 
-    console.log(completeAddress,type);
+    console.log(completeAddress, type);
 
     const { data } = await service.AddNewAddress(_id, {
       type,
